@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Усі працівники
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Усі працівники на сайті</h1>
+
+        {% if persons|length > 0 %}
+
+            {% for el in persons %}
+            <div class="alert alert-info">
+                <h2>{{ el.firstName }} {{ el.lastName }}</h2>
+                <p>{{ el.position }}</p>
+                <p><b>Дата: {{ el.date.date() }}</b></p>
+                <a href="/persons/{{ el.id }}" class="btn btn-warning">Детальніше</a>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>У вас ще немає працівників в базі</p>
+        {% endif %}
+    </div>
+{% endblock %}
